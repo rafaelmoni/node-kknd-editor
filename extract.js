@@ -8,13 +8,9 @@ const MISSION_START = 0x0646b0;
 const MISSION_SIZE = 48;
 const MISSION_COUNT = 31;
 
-const PROJECTILE_START = 0x06f4e0;
-const PROJECTILE_SIZE = 36;
-const PROJECTILE_COUNT = 50;
-
-const UNIT_START = PROJECTILE_START + PROJECTILE_SIZE * PROJECTILE_COUNT;
+const UNIT_START = 0x06f4e0;
 const UNIT_SIZE = 100;
-const UNIT_COUNT = 80;
+const UNIT_COUNT = 89;
 
 function readString(buffer, offset) {
   let str = "";
@@ -184,15 +180,6 @@ fs.readFile(FILE_PATH, (err, data) => {
     (item) => item.fmvOffset !== 0
   );
   toFile(`${exeName}_missions.json`, missions);
-
-  const projectiles = getItems(
-    data,
-    PROJECTILE_COUNT,
-    PROJECTILE_START,
-    PROJECTILE_SIZE,
-    parseProjectile
-  );
-  toFile(`${exeName}_projectiles.json`, projectiles);
 
   const units = getItems(
     data,

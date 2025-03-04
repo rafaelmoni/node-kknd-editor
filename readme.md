@@ -1,4 +1,4 @@
-This project is couple of node scripts to extract and modify KKNX xtreme game executable information about missions, projectiles and units.
+This project is couple of node scripts to extract and modify KKNX xtreme game executable information about missions and units.
 
 It's based on the [script](https://discord.com/channels/303959211749146645/723453780800176208/988718875040419860) shared on OpenKrush Discord by [IceReaper](https://github.com/IceReaper) to edit the game using 010 editor.
 
@@ -6,7 +6,6 @@ The `extract` script simply read the .exe and extract 3 JSON files:
 
 ```
 missions.json
-projectiles.json
 units.json
 ```
 
