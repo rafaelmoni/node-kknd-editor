@@ -1,0 +1,4 @@
+backup/*
+*.json
+*.exe
+!example_unit.json
