@@ -28,3 +28,25 @@ modify(fd, 1, 96); //buildTime offset = 96
 ```
 
 The offset of each information is inside the `extract.js` script, I will improve more later.
+
+# How to run
+
+Modify the extract.js file variable:
+
+```
+const FILE_PATH = "game.exe"; // Path to the game EXE
+```
+
+Then, just run in terminal:
+
+```
+node extract.js
+```
+
+Or:
+
+```
+node modify.js
+```
+
+Tested with node v20.
