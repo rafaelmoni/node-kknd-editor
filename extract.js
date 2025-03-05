@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const FILE_PATH = "game.exe"; // Path to the game EXE
+const FILE_PATH = "game_modified.exe"; // Path to the game EXE
 const OFFSET_FIX = 0x401a00;
 
 // Memory offsets
@@ -43,7 +43,7 @@ function parseMission(buffer, offset, index) {
   mission.unk5 = buffer.readUInt32LE(offset + 36);
   mission.unk6 = buffer.readUInt32LE(offset + 40);
   mission.unk7 = buffer.readUInt32LE(offset + 44);
-  mission.offset = offset.toString(16);
+  mission.offset = offset;
   mission.index = index;
 
   return mission;
@@ -61,7 +61,7 @@ function parseProjectile(buffer, offset, index) {
   projectile.damageVehicle = buffer.readUInt32LE(offset + 24);
   projectile.damageBuilding = buffer.readUInt32LE(offset + 28);
   projectile.unk1 = buffer.readUInt32LE(offset + 32);
-  projectile.offset = offset.toString(16);
+  projectile.offset = offset;
   projectile.index = index;
 
   return projectile;
@@ -79,7 +79,7 @@ function parseTurret(buffer, offset, index) {
   turret.anim1 = buffer.readInt32LE(offset + 24);
   turret.anim2 = buffer.readInt32LE(offset + 28);
   turret.projectileOffset = buffer.readUInt32LE(offset + 32);
-  turret.offset = offset.toString(16);
+  turret.offset = offset;
   turret.index = index;
 
   if (turret.projectileOffset !== 0) {
