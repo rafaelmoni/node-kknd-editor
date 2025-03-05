@@ -19,7 +19,7 @@ With these files you can inspect and modify game information.
 
 The `modify` script is still in progress, but it already copy and modifies the `game.exe` into a `game_modified.exe`.
 
-Inside of it, there's a function called `modifyUnit`, it will modify the unit information based on the offset of the information specified.
+Inside of it, there's a class instantiation, and inside this class we extract a function called `modifyUnit`, it will modify the unit information based on the offset of the information specified.
 
 You need units.json to be extracted before you modify things.
 There are memory offset attributes for `unit`, `turret` and `projectile` informations at the beginning of the file like `cost`, `speed`, `fireSpeed` and `buildTime`.
@@ -29,6 +29,9 @@ Suppose you want to modify Anaconda Tank, you will find the unit by its name and
 ```
 // Find inside units by name
 const anaconda = units.find((u) => u.name === "Anaconda Tank");
+
+// Get modify functions from modifier instance
+const { modifyProjectile, modifyTurret, modifyUnit } = modifier;
 
 modifyUnit(anaconda, 1, "cost");
 modifyUnit(anaconda, 240, "speed");
@@ -45,24 +48,20 @@ modifyProjectile(anaconda.turret.projectile, 10, "speed");
 
 Note: I'm not sure what unit are those integer values like speed, fireSpeed and reloadTime, the only we know is cost which is oil number and build time in seconds.
 
+You can try experiements, I've added a few one, specially a game speed modifier of 30% on all velocity parameters.
+
 ## Running
 
-Update `extract.js` file variable:
+Run in terminal to extract:
 
 ```
-const FILE_PATH = "game.exe"; // Path to the game EXE
+node extract.js KKNDXtreme.exe
 ```
 
-Then, just run in terminal:
+Run to modify:
 
 ```
-node extract.js
-```
-
-Or:
-
-```
-node modify.js
+node modify.js KKNDXtreme.exe
 ```
 
 Tested with node v20.

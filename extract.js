@@ -1,6 +1,7 @@
 const fs = require("fs");
 
-const FILE_PATH = "game_modified.exe"; // Path to the game EXE
+const fileCli = process.argv.slice(2, 3)[0];
+const FILE_PATH = fileCli || "KKND.exe"; // Path to the game EXE
 const OFFSET_FIX = 0x401a00;
 
 // Memory offsets
@@ -120,8 +121,8 @@ function parseUnit(buffer, offset, index) {
   unit.turretOffset = buffer.readUInt32LE(offset + 68);
   unit.projectileOffset = buffer.readUInt32LE(offset + 72);
   unit.size = buffer.readUInt32LE(offset + 76);
-  unit.size = buffer.readUInt32LE(offset + 80);
-  unit.faction = buffer.readUInt32LE(offset + 84);
+  unit.faction = buffer.readUInt32LE(offset + 80);
+  unit.unk1 = buffer.readUInt32LE(offset + 84);
   unit.prio1 = buffer.readUInt32LE(offset + 88);
   unit.prio2 = buffer.readUInt32LE(offset + 92);
   unit.buildTime = buffer.readUInt32LE(offset + 96);
@@ -179,7 +180,7 @@ fs.readFile(FILE_PATH, (err, data) => {
     parseMission,
     (item) => item.fmvOffset !== 0
   );
-  toFile(`${exeName}_missions.json`, missions);
+  toFile(`missions_${exeName}.json`, missions);
 
   const units = getItems(
     data,
@@ -189,5 +190,5 @@ fs.readFile(FILE_PATH, (err, data) => {
     parseUnit,
     (item) => item.sprite !== -1
   );
-  toFile(`${exeName}_units.json`, units);
+  toFile(`units_${exeName}.json`, units);
 });
