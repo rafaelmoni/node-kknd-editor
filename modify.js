@@ -65,6 +65,7 @@ const modifyProjectile = (projectile, newValue, offset) =>
   modify(fd, projectile, newValue, offset, PROJECTILE_ATTRIBUTES_OFFSETS);
 
 /*
+// Simply update all units craziness lol
 const infantryNames = [
   // Survivors
   "Rifleman",
@@ -146,6 +147,7 @@ modify(fd, building, 1, "buildTime");
 //modify(fd, unit2, 4096, "viewRange");
 
 /*
+// Change Anaconda, Barrage Craft and Autocannon Tank
 const anaconda = units.find((u) => u.name === "Anaconda Tank");
 const barrage = units.find((u) => u.name === "Barrage Craft");
 const cannon = units.find((u) => u.name === "Autocannon Tank");
@@ -185,11 +187,14 @@ units
   });
   */
 
+/*
+// Swap Anaconda's Turret with Barrage Craft Turret
 const anaconda = units.find((u) => u.name === "Anaconda Tank");
 const barrage = units.find((u) => u.name === "Barrage Craft");
 
 modifyUnit(anaconda, barrage.turretOffset, "turret");
 modifyUnit(anaconda, barrage.projectileOffset, "projectile");
+*/
 
 // Close the file
 fs.closeSync(fd);
