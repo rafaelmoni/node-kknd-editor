@@ -164,7 +164,10 @@ const increaseGameSpeed50 = (modifier) => {
       if (projectile && projectile.speed > 0) {
         const { speed: projectileSpeed } = projectile;
         modifyProjectile(
-          unit.projectile,
+          {
+            ...unit.projectile,
+            name: `${unit.name} Projectile`,
+          },
           Math.floor(projectileSpeed * factorIncrease),
           "speed"
         );
@@ -175,13 +178,19 @@ const increaseGameSpeed50 = (modifier) => {
           turret;
         if (turretFireSpeed > 0)
           modifyTurret(
-            turret,
+            {
+              ...turret,
+              name: `${unit.name} Turret`,
+            },
             Math.ceil(turretFireSpeed * factorDecrease),
             "fireSpeed"
           );
         if (turretReloadTime > 0)
           modifyTurret(
-            turret,
+            {
+              ...turret,
+              name: `${unit.name} Turret`,
+            },
             Math.ceil(turretReloadTime * factorDecrease),
             "reloadTime"
           );
@@ -190,14 +199,17 @@ const increaseGameSpeed50 = (modifier) => {
           const { speed: turretProjectileSpeed } = turret.projectile;
           if (turretProjectileSpeed > 0)
             modifyProjectile(
-              turret.projectile,
+              {
+                ...turret.projectile,
+                name: `${unit.name} Turret Projectile`,
+              },
               Math.floor(turretProjectileSpeed * factorIncrease),
               "speed"
             );
         }
       }
 
-      // For debugging
+      // For debugging/show entire map
       modifyUnit(unit, 4096, "viewRange");
       /*
       modifyUnit(unit, 1, "cost");

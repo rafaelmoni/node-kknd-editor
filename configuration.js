@@ -38,7 +38,7 @@ class Modificator {
       );
       return false;
     }
-    console.log(`Changing ${modified.name} ${offset} to ${newValue}`);
+    console.log(`Changing ${modified.name} ${offset} From: ${modified[offset]} To: ${newValue}`);
     const buffer = Buffer.alloc(4);
     buffer.writeUInt32LE(newValue, 0);
     fs.writeSync(
