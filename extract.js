@@ -13,6 +13,10 @@ const UNIT_START = 0x06f4e0;
 const UNIT_SIZE = 100;
 const UNIT_COUNT = 89;
 
+/**
+ * @param {Buffer} buffer Memory buffer
+ * @param {string} offset Pointer offset
+ */
 function readString(buffer, offset) {
   let str = "";
   let i = offset;
@@ -23,6 +27,11 @@ function readString(buffer, offset) {
   return str;
 }
 
+/**
+ * @param {Buffer} buffer Memory buffer
+ * @param {string} offset Pointer offset
+ * @param {number} index Index in the list
+ */
 function parseMission(buffer, offset, index) {
   let mission = {};
 
@@ -50,6 +59,11 @@ function parseMission(buffer, offset, index) {
   return mission;
 }
 
+/**
+ * @param {Buffer} buffer Memory buffer
+ * @param {string} offset Pointer offset
+ * @param {number} index Index in the list
+ */
 function parseProjectile(buffer, offset, index) {
   let projectile = {};
 
@@ -68,6 +82,11 @@ function parseProjectile(buffer, offset, index) {
   return projectile;
 }
 
+/**
+ * @param {Buffer} buffer Memory buffer
+ * @param {string} offset Pointer offset
+ * @param {number} index Index in the list
+ */
 function parseTurret(buffer, offset, index) {
   let turret = {};
 
@@ -92,8 +111,9 @@ function parseTurret(buffer, offset, index) {
 }
 
 /**
- * @param {Buffer} buffer
- * @param {integer} offset
+ * @param {Buffer} buffer Memory buffer
+ * @param {string} offset Pointer offset
+ * @param {number} index Index in the list
  */
 function parseUnit(buffer, offset, index) {
   let unit = {};
