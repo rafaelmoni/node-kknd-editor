@@ -1,12 +1,16 @@
 const { Modificator } = require("./configuration");
-const { increaseGameSpeed30, increaseGameSpeed50 } = require("./experiments");
+const {
+  increaseGameSpeed,
+  increaseGameSpeed30,
+  doubleGameSpeed,
+} = require("./experiments");
 
 const fileCli = process.argv.slice(2, 3)[0];
 const originalFile = fileCli || "game.exe"; // Original .exe file
 const modifiedFile = originalFile.replace(".exe", "") + "_modified.exe"; // New file with changes
 
 const modifier = new Modificator(originalFile, modifiedFile);
-increaseGameSpeed30(modifier);
+increaseGameSpeed(modifier, 3, 1 / 3);
 
 /*
 const units = require("./units_game.json");

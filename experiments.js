@@ -64,8 +64,7 @@ const reduceAutoTankAndCrabSize = (modifier) => {
   modifyUnit(crab, 128, "size");
 };
 
-// Increase gamespeed 30% faster
-const increaseGameSpeed30 = (modifier) => {
+const increaseGameSpeed = (modifier, factorIncrease, factorDecrease) => {
   const { modifyUnit, modifyTurret, modifyProjectile } = modifier;
   units
     .filter((u) =>
@@ -74,79 +73,6 @@ const increaseGameSpeed30 = (modifier) => {
     .forEach((unit) => {
       const { speed, fireSpeed, rotateSpeed, buildTime, turret, projectile } =
         unit;
-      const factorIncrease = 4 / 3;
-      const factorDecrease = 2 / 3;
-
-      if (speed > 0)
-        modifyUnit(unit, Math.floor(speed * factorIncrease), "speed");
-      if (fireSpeed > 0)
-        modifyUnit(unit, Math.floor(fireSpeed * factorDecrease), "fireSpeed");
-      if (rotateSpeed > 0)
-        modifyUnit(
-          unit,
-          Math.floor(rotateSpeed * factorIncrease),
-          "rotateSpeed"
-        );
-
-      modifyUnit(unit, Math.ceil(buildTime * factorDecrease), "buildTime");
-
-      if (projectile && projectile.speed > 0) {
-        const { speed: projectileSpeed } = projectile;
-        modifyProjectile(
-          unit.projectile,
-          Math.floor(projectileSpeed * factorIncrease),
-          "speed"
-        );
-      }
-
-      if (turret) {
-        const { fireSpeed: turretFireSpeed, reloadTime: turretReloadTime } =
-          turret;
-        if (turretFireSpeed > 0)
-          modifyTurret(
-            turret,
-            Math.ceil(turretFireSpeed * factorDecrease),
-            "fireSpeed"
-          );
-        if (turretReloadTime > 0)
-          modifyTurret(
-            turret,
-            Math.ceil(turretReloadTime * factorDecrease),
-            "reloadTime"
-          );
-
-        if (turret.projectile) {
-          const { speed: turretProjectileSpeed } = turret.projectile;
-          if (turretProjectileSpeed > 0)
-            modifyProjectile(
-              turret.projectile,
-              Math.floor(turretProjectileSpeed * factorIncrease),
-              "speed"
-            );
-        }
-      }
-
-      // For debugging
-      modifyUnit(unit, 4096, "viewRange");
-      /*
-      modifyUnit(unit, 1, "cost");
-      modifyUnit(unit, 1, "buildTime");
-      */
-    });
-};
-
-// Increase gamespeed 5% faster
-const increaseGameSpeed50 = (modifier) => {
-  const { modifyUnit, modifyTurret, modifyProjectile } = modifier;
-  units
-    .filter((u) =>
-      [...infantryNames, ...unitNames, ...buildingNames].includes(u.name)
-    )
-    .forEach((unit) => {
-      const { speed, fireSpeed, rotateSpeed, buildTime, turret, projectile } =
-        unit;
-      const factorIncrease = 2;
-      const factorDecrease = 1 / 2;
 
       if (speed > 0)
         modifyUnit(unit, Math.floor(speed * factorIncrease), "speed");
@@ -218,11 +144,26 @@ const increaseGameSpeed50 = (modifier) => {
     });
 };
 
+// Increase gamespeed 30% faster
+const increaseGameSpeed30 = (modifier) => {
+  const factorIncrease = 4 / 3;
+  const factorDecrease = 2 / 3;
+  increaseGameSpeed(modifier, factorIncrease, factorDecrease);
+};
+
+// Increase gamespeed 50% faster
+const doubleGameSpeed = (modifier) => {
+  const factorIncrease = 2;
+  const factorDecrease = 1 / 2;
+  increaseGameSpeed(modifier, factorIncrease, factorDecrease);
+};
+
 module.exports = {
   revealMap,
   changeProjectileSpeed,
   swapBarrageTank,
   reduceAutoTankAndCrabSize,
+  increaseGameSpeed,
   increaseGameSpeed30,
-  increaseGameSpeed50,
+  doubleGameSpeed,
 };
