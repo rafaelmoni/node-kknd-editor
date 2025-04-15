@@ -8,6 +8,10 @@ const infantryNames = [
   "Sapper",
   "RPG Launcher",
   "Sniper",
+  // Special
+  "El Presidente",
+  "General",
+  "Scout",
 
   // Evolveds
   "Berserker",
@@ -18,6 +22,8 @@ const infantryNames = [
   "Rioter",
   "Bazooka",
   "Crazy Harry",
+  "King Zog",
+  "Warlord",
 ];
 
 const unitNames = [
@@ -30,6 +36,9 @@ const unitNames = [
   "Barrage Craft",
   "Autocannon Tank",
   "Bomber",
+  // Special
+  "Convoy Tanker",
+  "Mobile Outpost",
 
   // Evolved
   "Dire Wolf",
@@ -40,10 +49,21 @@ const unitNames = [
   "Giant Beetle",
   "Missile Crab",
   "Wasp",
+  // Special
+  "Clanhall Wagon",
 
   // Both
   "Oil Tanker",
   "Derrick",
+
+  // Robots
+  "U.F.O.",
+  "Gort The Robot",
+  "G.O.R.N.",
+  "Plasma Tank",
+  "Sentinel Droid",
+  "Mech",
+  "Infiltrator",
 ];
 
 const buildingNames = [

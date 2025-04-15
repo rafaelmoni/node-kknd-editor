@@ -10,7 +10,8 @@ const originalFile = fileCli || "game.exe"; // Original .exe file
 const modifiedFile = originalFile.replace(".exe", "") + "_modified.exe"; // New file with changes
 
 const modifier = new Modificator(originalFile, modifiedFile);
-increaseGameSpeed(modifier, 3, 1 / 3);
+//increaseGameSpeed(modifier, 1.25, 0.75);
+increaseGameSpeed30(modifier);
 
 /*
 const units = require("./units_game.json");
